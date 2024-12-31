@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wen Midnite</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #fefefe;
+            text-align: center;
+        }
+
+        header {
+            background-color: #1c1c1c;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        header p {
+            margin: 10px 0;
+            font-style: italic;
+        }
+
+        .banner {
+            background: url('banner-image-placeholder.jpg') no-repeat center center / cover;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .banner h2 {
+            font-size: 3em;
+            color: #fefefe;
+        }
+
+        section {
+            padding: 40px 20px;
+        }
+
+        .meme {
+            margin: 20px 0;
+        }
+
+        footer {
+            background-color: #1c1c1c;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #ff4747;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-size: 1.2em;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .cta-button:hover {
+            background-color: #ff3030;
+        }
+
+        .countdown {
+            margin-top: 40px;
+        }
+
+        .countdown h3 {
+            margin-bottom: 20px;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            font-size: 1.5em;
+        }
+
+        .countdown-item {
+            text-align: center;
+        }
+
+        .countdown-item span {
+            display: block;
+            font-size: 2em;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        function updateCountdown() {
+            const timezones = ["UTC", "America/New_York", "Europe/London", "Asia/Tokyo", "Australia/Sydney"];
+            const countdownContainer = document.getElementById('countdown-container');
+            countdownContainer.innerHTML = '';
+
+            timezones.forEach(tz => {
+                const now = new Date();
+                const midnight = new Date(now.toLocaleString("en-US", { timeZone: tz }));
+                midnight.setHours(24, 0, 0, 0);
+
+                const timeLeft = midnight - now;
+
+                const hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
+                const seconds = Math.floor((timeLeft / 1000) % 60);
+
+                const countdownItem = document.createElement('div');
+                countdownItem.className = 'countdown-item';
+                countdownItem.innerHTML = `
+                    <span>${hours}</span> hours
+                    <span>${minutes}</span> minutes
+                    <span>${seconds}</span> seconds
+                    <br>
+                    <small>${tz}</small>
+                `;
+                countdownContainer.appendChild(countdownItem);
+            });
+        }
+
+        setInterval(updateCountdown, 1000);
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Wen Midnite</h1>
+        <p>The ultimate New Year’s meme vibe</p>
+    </header>
+
+    <div class="banner">
+        <h2>Wen Midnite Y'all?!</h2>
+    </div>
+
+    <section>
+        <h3>About Wen Midnite</h3>
+        <p>
+            Wen Midnite is the perfect blend of New Year’s countdown excitement and meme-worthy energy. Celebrate the late-night vibes
+            and keep the party going with this iconic moment of humor and hype.
+        </p>
+        <img class="meme" src="meme-placeholder.jpg" alt="Wen Midnite Meme" width="400">
+        <br>
+        <a href="#" class="cta-button">Join the Party</a>
+    </section>
+
+    <section class="countdown">
+        <h3>Countdown to Midnite</h3>
+        <div id="countdown-container" class="countdown-timer"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Wen Midnite. All rights reserved.</p>
+        <p>Built for the degen in you. 🎉</p>
+    </footer>
+</body>
+</html>
